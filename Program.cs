@@ -10,7 +10,6 @@ namespace DeepSea
       var db = new DeepSeaContext();
       var allCreatures = db.Creatures;
       var input = "";
-
       //   while (input != "Q" || input != "U")
       //   {
 
@@ -23,11 +22,11 @@ namespace DeepSea
       foreach (var data in allCreatures)
       {
         Console.WriteLine("\n");
-        Console.WriteLine("==========================");
         Console.WriteLine($"NAME : {data.Species} \nLOCATION: {data.LocationOfLastSeen} \n# OF TIMES SEEN: {data.CountOfTimesSeen}\n");
       }
-      Console.WriteLine("Would you like to UPDATE, VIEW or EXIT?\n");
+      Console.WriteLine("Would you like to UPDATE, VIEW, DELETE or EXIT?\n");
       input = Console.ReadLine().ToUpper();
+
 
       if (input == "UPDATE")
       {
@@ -41,7 +40,6 @@ namespace DeepSea
         Console.WriteLine(oneCreatureData);
         Console.WriteLine("Would you like to update LOCATION or AMOUNTSEEN ?");
         input = Console.ReadLine().ToUpper();
-
 
         if (input != "AMOUNTSEEN")
         {
@@ -71,6 +69,17 @@ namespace DeepSea
         {
           Console.WriteLine($"NAME : {data.Species} \nLOCATION: {data.LocationOfLastSeen} \n# OF TIMES SEEN: {data.CountOfTimesSeen}\n");
         }
+      }
+      else if (input == "DELETE")
+      {
+        Console.WriteLine("What location would you like to remove?.\n");
+        input = Console.ReadLine();
+
+        var locationDelete = db.Creatures.Where(c => c.LocationOfLastSeen.ToUpper() == input.ToUpper());
+        db.Creatures.RemoveRange(locationDelete);
+        db.SaveChanges();
+        Console.Write("Data Updated.");
+
       }
 
 
