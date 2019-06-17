@@ -7,56 +7,77 @@ namespace DeepSea
   {
     static void Main(string[] args)
     {
+      var db = new DeepSeaContext();
+      var allCreatures = db.Creatures;
+      var input = "";
 
-      while (true)
+      //   while (input != "Q" || input != "U")
+      //   {
+
+
+      Console.Clear();
+      Console.WriteLine("Welcome To DEEP SEA LIBRARY \n\nPress ENTER to Continue");
+      Console.ReadKey();
+
+
+      foreach (var data in allCreatures)
       {
-        var db = new DeepSeaContext();
-        var input = "";
-        var allCreatures = db.Creatures;
+        Console.WriteLine("\n");
+        Console.WriteLine("==========================");
+        Console.WriteLine($"NAME : {data.Species} \nLOCATION: {data.LocationOfLastSeen} \n# OF TIMES SEEN: {data.CountOfTimesSeen}\n");
+      }
+      Console.WriteLine("Would you like to UPDATE, VIEW or EXIT?\n");
+      input = Console.ReadLine().ToUpper();
 
-        Console.Clear();
-        Console.Write("Would you like to VIEW, UPDATE or DELETE? \n");
+      if (input == "UPDATE")
+      {
+
+        Console.WriteLine("Which Creature Would You Like to Update?.\n");
+
+        input = Console.ReadLine();
+        var chosenCreature = db.Creatures.FirstOrDefault(c => c.Species.ToUpper() == input.ToUpper());
+        var oneCreatureData = $"NAME : {chosenCreature.Species} \nLOCATION: {chosenCreature.LocationOfLastSeen} \n# OF TIMES SEEN: {chosenCreature.CountOfTimesSeen}\n";
+
+        Console.WriteLine(oneCreatureData);
+        Console.WriteLine("Would you like to update LOCATION or AMOUNTSEEN ?");
         input = Console.ReadLine().ToUpper();
 
 
-        if (input == "VIEW")
+        if (input != "AMOUNTSEEN")
         {
-
-          foreach (var data in allCreatures)
-          {
-            Console.WriteLine("\n");
-            Console.WriteLine("==========================");
-            Console.WriteLine($"NAME : {data.Species} \nLOCATION: {data.LocationOfLastSeen} \n# OF TIMES SEEN: {data.CountOfTimesSeen}");
-          }
-          Console.WriteLine("Type Q to quit, M for the main menu, or U to update");
-          input = Console.ReadLine().ToUpper();
-
-          if (input == "U")
-          {
-            Console.Write("Which Creature Would You Like to Update?.\n");
-
-            input = Console.ReadLine();
-            var creatureNameInput = db.Creatures.FirstOrDefault(c => c.Species.ToUpper() == input.ToUpper());
-
-            Console.WriteLine($"NAME : {creatureNameInput.Species} \nLOCATION: {creatureNameInput.LocationOfLastSeen} \n# OF TIMES SEEN: {creatureNameInput.CountOfTimesSeen}");
-
-            // if (creatureNameInput != null)
-            //     {
-
-            //         creatureNameInput.CountOfTimesSeen++;
-            //         db.SaveChanges();
-            //         Console.Write("\n");
-            //         Console.WriteLine($"{input} has been updated.\n");
-            //         Console.WriteLine("Type Q to quit or M for the main menu?");
-            //         input = Console.ReadLine().ToUpper();
-            //     }
-
-          }
-
+          Console.WriteLine("What is the new location?");
+          input = Console.ReadLine();
+          chosenCreature.LocationOfLastSeen = input;
+          db.SaveChanges();
+          Console.Clear();
+          Console.Write("Data Updated.");
+        }
+        else
+        {
+          chosenCreature.CountOfTimesSeen++;
+          db.SaveChanges();
+          Console.Write("Data Updated.");
         }
 
-        if (input == "Q") break;
       }
+      else if (input == "VIEW")
+      {
+        Console.WriteLine("Which Location Would Like to Filter By?.\n");
+        input = Console.ReadLine();
+
+        var locationFilter = db.Creatures.Where(c => c.LocationOfLastSeen.ToUpper() == input.ToUpper());
+        Console.WriteLine("\n");
+        foreach (var data in locationFilter)
+        {
+          Console.WriteLine($"NAME : {data.Species} \nLOCATION: {data.LocationOfLastSeen} \n# OF TIMES SEEN: {data.CountOfTimesSeen}\n");
+        }
+      }
+
+
+
+
+      // if (input == "Q") break;
+      //}
 
     }
   }
