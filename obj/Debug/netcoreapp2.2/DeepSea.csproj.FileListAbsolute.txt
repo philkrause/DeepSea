@@ -1,0 +1,11 @@
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/bin/Debug/netcoreapp2.2/DeepSea.deps.json
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/bin/Debug/netcoreapp2.2/DeepSea.runtimeconfig.json
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/bin/Debug/netcoreapp2.2/DeepSea.runtimeconfig.dev.json
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/bin/Debug/netcoreapp2.2/DeepSea.dll
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/bin/Debug/netcoreapp2.2/DeepSea.pdb
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/obj/Debug/netcoreapp2.2/DeepSea.csprojAssemblyReference.cache
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/obj/Debug/netcoreapp2.2/DeepSea.csproj.CoreCompileInputs.cache
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/obj/Debug/netcoreapp2.2/DeepSea.AssemblyInfoInputs.cache
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/obj/Debug/netcoreapp2.2/DeepSea.AssemblyInfo.cs
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/obj/Debug/netcoreapp2.2/DeepSea.dll
+/Users/phil/Desktop/sdg/unit-xxi/DeepSea/obj/Debug/netcoreapp2.2/DeepSea.pdb
